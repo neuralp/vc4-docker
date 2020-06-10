@@ -1,0 +1,41 @@
+dpkg --add-architecture i386
+
+apt update && apt upgrade -y
+
+apt install libperl5.22:i386 -y
+
+rm /usr/share/doc/libperl5.22/changelog.Debian.gz
+
+#again reissue the install
+apt install libperl5.22:i386 -y
+
+COPY crestron.key
+COPY crestron.list
+
+apt-key add crestron.key
+
+apt install apt-transport-https -y
+
+apt install virtualcontrol -y
+
+Steps for install:
+
+IPv4 Rules = yes
+IPv6 Rules = yes
+
+Default Kerberos version 5 realm: <enter>
+
+LDAP URI: <enter>
+LDAP DN: <enter>
+LDAP VERSION: 1
+Local Root DB admin: no
+Require Login: no
+
+Installation directory: <enter>
+
+Password MariaDB root user: password
+Confirm Password: password
+
+Database name: <enter>
+Database useraccount: <enter> "virtualcontrol" is default
+
