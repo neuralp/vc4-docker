@@ -1,0 +1,45 @@
+#!/usr/bin/expect -f
+
+spawn apt install -y virtualcontrol
+
+expect "Save current IPv4 rules? [yes/no] "
+send "yes\n"
+
+expect "Save current IPv6 rules? [yes/no] "
+send "yes\n"
+
+expect "Default Kerberos version 5 realm: "
+send "\n"
+
+expect "LDAP server Uniform Resource Identifier: "
+send "\n"
+
+expect "Distinguished name of the search base: "
+send "\n"
+
+expect "LDAP version to use: "
+send "1\n"
+
+expect "Make local root Database admin: [yes/no] "
+send "no\n"
+
+expect "Does the LDAP database require login? [yes/no] "
+send "no\n"
+
+expect "Please provide the installation directory, or press enter to accept the default (default is /opt/crestron)"
+send "\n"
+
+expect "Please provide the password for the MariaDB Root user."
+send "password\n"
+
+expect "Please confirm the password for root."
+send "password\n"
+
+expect "Please provide a name for the database or press enter to accept the default (default is VirtualControl)"
+send "\n"
+
+expect "Please provide the name for the database's user account (default is virtualcontrol):"
+send "\n"
+
+expect "Please provide a password for the virtualcontrol user or press enter to accept the default (default is [RANDOM STRING]):"
+send "\n"

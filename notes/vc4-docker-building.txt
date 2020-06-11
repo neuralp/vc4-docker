@@ -18,24 +18,14 @@ apt install apt-transport-https -y
 
 apt install virtualcontrol -y
 
-Steps for install:
+Steps for install (exact):
 
-IPv4 Rules = yes
-IPv6 Rules = yes
+expect 'Save current IPv4 rules? [yes/no] '
+send 'yes\n'
 
-Default Kerberos version 5 realm: <enter>
+expect 'Save current IPv6 rules? [yes/no] '
+send 'yes\n'
 
-LDAP URI: <enter>
-LDAP DN: <enter>
-LDAP VERSION: 1
-Local Root DB admin: no
-Require Login: no
-
-Installation directory: <enter>
-
-Password MariaDB root user: password
-Confirm Password: password
-
-Database name: <enter>
-Database useraccount: <enter> "virtualcontrol" is default
+expect 'Default Kerberos version 5 realm: '
+send '<enter>'
 

@@ -4,6 +4,7 @@ RUN dpkg --add-architecture i386
 RUN apt update && apt upgrade -y
 
 RUN apt install apt-transport-https -y
+RUN apt install --no-install-recommends expect -y
 
 COPY crestron.key /root/
 RUN apt-key add /root/crestron.key
@@ -22,7 +23,9 @@ RUN service mysql start
 ADD https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/v1.4/files/docker/systemctl.py /bin/systemctl
 RUN chmod +x /bin/systemctl
 
-RUN printf 'y\ny\n\n\n\n1\nno\nno\n\npassword\npassword\n\n\n' | apt install virtualcontrol -y
+COPY vc4install.exp /root/
+RUN chmod +x /root/vc4install.exp
+RUN ~/vc4install.exp
 
 COPY start-vc4.sh /opt/
 RUN chmod +x /opt/start-vc4.sh
