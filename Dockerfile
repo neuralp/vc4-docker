@@ -3,7 +3,7 @@ FROM ubuntu:xenial
 RUN dpkg --add-architecture i386
 RUN apt update && apt upgrade -y
 
-RUN apt install apt-transport-https -y
+RUN apt install apt-transport-https tclsh mariadb-server python -y
 RUN apt install --no-install-recommends expect -y
 
 COPY crestron.key /root/
@@ -16,9 +16,6 @@ RUN apt update
 RUN apt install libperl5.22:i386 -y; exit 0
 RUN rm /usr/share/doc/libperl5.22/changelog.Debian.gz
 RUN apt install libperl5.22:i386 apt-transport-https -y
-
-RUN apt install mariadb-server python -y
-RUN service mysql start
 
 ADD https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/v1.4/files/docker/systemctl.py /bin/systemctl
 RUN chmod +x /bin/systemctl
