@@ -1,10 +1,18 @@
 #!/usr/bin/expect -f
 
 set timeout 300
-spawn apt install -y virtualcontrol
+
+spawn /bin/bash
+
+expect "#"
+send -- "service mysql start\r"
+expect "#"
+send -- "apt install -y virtualcontrol\r"
 
 expect "IPv4 rules?"
 send -- "yes\r"
+
+set timeout 60
 
 expect "IPv6 rules?"
 send -- "yes\r"
@@ -30,10 +38,7 @@ send -- "no\r"
 expect "Please provide the installation directory, or press enter to accept the default"
 send -- "\r"
 
-expect "Please provide a MariaDB username with administrative privileges"
-send -- "root\r"
-
-expect "Please provide the password for the MariaDB Root user"
+expect "Please provide the password for the MariaDB Root user."
 send -- "password\r"
 
 expect "Please confirm the password for root"
@@ -47,3 +52,11 @@ send -- "\r"
 
 expect "Please provide a password for the virtualcontrol user or press enter to accept the default"
 send -- "\r"
+
+set timeout 300
+
+expect "Thank you for installing Crestron Virtual Control"
+expect "#"
+
+send -- "exit\r"
+exit

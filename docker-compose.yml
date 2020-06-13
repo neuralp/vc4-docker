@@ -1,0 +1,8 @@
+version: '2'
+services:
+  vc4:
+    image: vc4
+    container_name: vc4
+    ports:
+      - 80:80
+      - 443:443

@@ -1,4 +1,5 @@
 FROM ubuntu:xenial
+USER root
 
 RUN dpkg --add-architecture i386
 RUN apt update && apt upgrade -y
@@ -26,5 +27,7 @@ RUN ~/vc4install.exp
 
 COPY start-vc4.sh /opt/
 RUN chmod +x /opt/start-vc4.sh
+
+EXPOSE 80 443 41794 41795 41796 41797
 
 ENTRYPOINT ["/opt/start-vc4.sh"]
