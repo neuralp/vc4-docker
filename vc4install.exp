@@ -1,62 +1,53 @@
 #!/usr/bin/expect -f
 
-set timeout 300
-
 spawn /bin/bash
 
-expect "#"
-send -- "service mysql start\r"
-expect "#"
-send -- "apt install -y virtualcontrol\r"
-
-expect "IPv4 rules?"
-send -- "yes\r"
-
-set timeout 60
-
-expect "IPv6 rules?"
-send -- "yes\r"
-
-expect "Default Kerberos version 5 realm"
-send -- "\r"
-
-expect "LDAP server Uniform Resource Identifier"
-send -- "\r"
-
-expect "Distinguished name of the search base"
-send -- "\r"
-
-expect "LDAP version to use"
-send -- "1\r"
-
-expect "Make local root Database admin"
-send -- "no\r"
-
-expect "Does the LDAP database require login"
-send -- "no\r"
-
-expect "Please provide the installation directory, or press enter to accept the default"
-send -- "\r"
-
-expect "Please provide the password for the MariaDB Root user."
-send -- "password\r"
-
-expect "Please confirm the password for root"
-send -- "password\r"
-
-expect "Please provide a name for the database or press enter to accept the default"
-send -- "\r"
-
-expect "Please provide the name for the database's user account"
-send -- "\r"
-
-expect "Please provide a password for the virtualcontrol user or press enter to accept the default"
-send -- "\r"
+send -- "./installVC4.sh\r"
 
 set timeout 300
 
-expect "Thank you for installing Crestron Virtual Control"
-expect "#"
+expect "Are you migrating VC4 from another build?  (Y/N)"
+send -- "N\r"
 
+# "Enter virtualcontrol Home Path: ( Default: /opt/crestron/ )"
+expect "Press Enter To Continue With Default Value:"
+send -- "\r"
+
+# "Please provide redis port number (current redis value is 6980 )"
+expect "Press Enter To Continue With Default Value (6980):"
+send -- "\r"
+
+# "Please provide CIP port number (current CIP value is 41794 )"
+expect "Press Enter To Continue With Default Value (41794):"
+send -- "\r"
+
+# "Please provide Secure CIP port number (current Secure CIP value is 41796 )"
+expect "Press Enter To Continue With Default Value (41796):"
+send -- "\r"
+
+# "Please provide Secure Web Socket port number (current Secure Web Socket value is 49200 )"
+expect "Press Enter To Continue With Default Value (49200):"
+send -- "\r"
+
+# "Please provide SIMPL debugger port number (current SIMPL debugger port value is 49300 )"
+expect "Press Enter To Continue With Default Value (49300):"
+send -- "\r"
+
+expect "Please provide new password for the MariaDB Root user:"
+send -- "password\r"
+
+expect "Please confirm the password for root:"
+send -- "password\r"
+
+expect "Please provide a name for the database or press enter to accept the default (default is VirtualControl):"
+send -- "\r"
+
+expect "Please provide the name for the  database's user account  (default is virtualcontrol):"
+send -- "\r"
+
+expect "Please provide a password for the virtualcontrol user or press enter to accept the default (default is [RANDOM STRING]):"
+send -- "\r"
+
+expect "]$"
 send -- "exit\r"
 exit
